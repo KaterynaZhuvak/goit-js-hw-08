@@ -7,7 +7,6 @@ const player = new Player('vimeo-player', {
     width: 1140
 });
 
-
 const onPlay = function (data) {
     localStorage.setItem('videoplayer-current-time', data.seconds);
 };

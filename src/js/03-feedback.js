@@ -11,7 +11,6 @@ form.addEventListener('change', throttle(event => {
     localStorage.setItem('feedbackFormState', JSON.stringify(info))
 }, 500))
 
-
 form.addEventListener('submit', event => {
     event.preventDefault();
     const formData = new FormData(form);
@@ -21,7 +20,6 @@ form.addEventListener('submit', event => {
     localStorage.removeItem('feedbackFormState');
 });
    
-
 function initForm() {
     let parseForm = localStorage.getItem('feedbackFormState');
     if (parseForm) {
