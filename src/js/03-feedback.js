@@ -3,12 +3,12 @@ import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
 
 function checkStorage() {
-  if (localStorage) {
+  if (localStorage.getItem('feedbackFormState')) {
       const parseForm = localStorage.getItem('feedbackFormState');
       const parsedData = JSON.parse(parseForm);
       form.elements.email.value = parsedData.email || '';
       form.elements.message.value = parsedData.message || '';
-    }
+  }
 }
 
 checkStorage();
