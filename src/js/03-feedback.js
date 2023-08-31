@@ -4,24 +4,26 @@ const form = document.querySelector('.feedback-form');
 
 function checkStorage() {
   if (localStorage.getItem('feedbackFormState')) {
-      const parseForm = localStorage.getItem('feedbackFormState');
-      const parsedData = JSON.parse(parseForm);
-      form.elements.email.value = parsedData.email || '';
-      form.elements.message.value = parsedData.message || '';
+    const parseForm = localStorage.getItem('feedbackFormState');
+    const parsedData = JSON.parse(parseForm);
+    form.elements.email.value = parsedData.email || '';
+    form.elements.message.value = parsedData.message || '';
   }
 }
 
 checkStorage();
 
-let info = {};
+function saveInfo() {
+  let info = {
+    email: '',
+    message: '',
+  };
+  info.email = form.elements.email.value;
+  info.message = form.elements.message.value;
+  localStorage.setItem('feedbackFormState', JSON.stringify(info));
+}
 
-form.addEventListener(
-  'change',
-  throttle(event => {
-    info[event.target.name] = event.target.value;
-    localStorage.setItem('feedbackFormState', JSON.stringify(info));
-  }, 500)
-);
+form.addEventListener('change', throttle(saveInfo, 500));
 
 form.addEventListener('submit', event => {
   event.preventDefault();
@@ -36,6 +38,5 @@ form.addEventListener('submit', event => {
     }
     event.currentTarget.reset();
   }
-  info = {};
   localStorage.removeItem('feedbackFormState');
 });
