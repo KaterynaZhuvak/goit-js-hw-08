@@ -13,17 +13,18 @@ function checkStorage() {
 
 checkStorage();
 
-function saveInfo() {
+function saveInfo(event) {
   let info = {
     email: '',
     message: '',
   };
+  console.dir(form.elements.email)
   info.email = form.elements.email.value;
   info.message = form.elements.message.value;
   localStorage.setItem('feedbackFormState', JSON.stringify(info));
 }
 
-form.addEventListener('change', throttle(saveInfo, 500));
+form.addEventListener('input', throttle(saveInfo, 500));
 
 form.addEventListener('submit', event => {
   event.preventDefault();
