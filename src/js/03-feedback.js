@@ -13,12 +13,11 @@ function checkStorage() {
 
 checkStorage();
 
-function saveInfo(event) {
+function saveInfo() {
   let info = {
     email: '',
     message: '',
   };
-  console.dir(form.elements.email)
   info.email = form.elements.email.value;
   info.message = form.elements.message.value;
   localStorage.setItem('feedbackFormState', JSON.stringify(info));
